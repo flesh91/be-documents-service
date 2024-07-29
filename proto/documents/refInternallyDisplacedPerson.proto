@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+import "documents/documentData.proto";
+
+import "document.proto";
+
+package ua.gov.diia.document;
+option java_multiple_files = true;
+option java_package = "ua.gov.diia.document";
+
+enum RefInternallyDisplacedPersonType {
+  person = 0;
+  accompanied = 1;
+}
+
+message RefInternallyDisplacedPerson {
+  RefInternallyDisplacedPersonType docType = 1;
+  string id = 2;
+  string docNumber = 3;
+  string lastName = 4;
+  string firstName = 5;
+  optional string middleName = 6;
+  string issueDate = 7;
+  string birthDate = 8;
+  string gender = 9;
+  string department = 10;
+  optional string legalRepresentative = 11;
+  DocIdentity docIdentity = 12;
+  Address address = 13;
+  // DocumentMetaData
+  int32 docStatus = 14;
+  optional string docSubtype = 15;
+  optional ua.gov.diia.types.documents.OwnerType ownerType = 16;
+  optional google.protobuf.Timestamp registrationDate = 17;
+  optional string expirationDate = 18;
+  optional ua.gov.diia.document.DocumentTicker tickerOptions = 19;
+  optional string fullNameHash = 20;
+}
+
+message DocIdentity {
+  string number = 1;
+  string issueDate = 2;
+  string department = 3;
+}
+
+message Address {
+  string birth = 1;
+  string registration = 2;
+  string actual = 3;
+}

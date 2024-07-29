@@ -39,6 +39,9 @@ service DocumentsService {
   rpc getDocumentsToProcess(GetDocumentsToProcessRequest)
       returns (GetDocumentsToProcessResponse);
 
+  rpc GetBirthCertificatesToProcessV2(ua.gov.diia.document.GetBirthCertificatesToProcessReq)
+      returns (ua.gov.diia.document.GetBirthCertificatesToProcessRes);
+
   rpc getRegistration(google.protobuf.Empty) returns (GetRegistrationRes);
 
   rpc GetSortedByDefaultDocumentTypes(google.protobuf.Empty)

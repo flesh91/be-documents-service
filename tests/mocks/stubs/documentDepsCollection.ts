@@ -5,9 +5,9 @@ import { merge } from 'lodash'
 import { Localization, ProfileFeature, SessionType } from '@diia-inhouse/types'
 
 import { DocumentDataMapper } from '@interfaces/dataMappers'
+import { DocumentAnalyticsService } from '@interfaces/services/analytics'
 import {
     AnyDocumentService,
-    DocumentAnalyticsService,
     DocumentAttributesService,
     DocumentExpirationService,
     GetDocumentsStrategy,

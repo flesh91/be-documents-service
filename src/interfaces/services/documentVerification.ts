@@ -12,7 +12,7 @@ import {
 } from '@diia-inhouse/types'
 
 import { Representative } from '@interfaces/providers/eis'
-import { DocumentInstance } from '@interfaces/services'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 
 export interface ShareLinkParams {
     documentType: string

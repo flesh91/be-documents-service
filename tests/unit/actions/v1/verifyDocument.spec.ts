@@ -4,7 +4,7 @@ import VerifyDocumentAction from '@actions/v1/verifyDocument'
 
 import DocumentVerificationService from '@services/documentVerification'
 
-import { DocumentInstance } from '@interfaces/services'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 
 describe(`Action ${VerifyDocumentAction.name}`, () => {
     const testKit = new TestKit()

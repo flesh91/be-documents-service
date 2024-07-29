@@ -1,4 +1,4 @@
-import { AnalyticsCategory } from '@src/interfaces/services'
+import { AnalyticsCategory } from '@src/interfaces/services/analytics'
 
 export type RegistrationSource = 'passport' | 'passportByInn'
 

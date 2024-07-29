@@ -1,6 +1,6 @@
 import { AppUserActionHeaders, ServiceEntranceActionArguments } from '@diia-inhouse/types'
 
-import { DocumentInstance } from '@interfaces/services'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 
 interface ActionHeaders extends AppUserActionHeaders {
     token: string

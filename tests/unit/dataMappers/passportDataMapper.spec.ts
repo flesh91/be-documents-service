@@ -25,7 +25,7 @@ import { getPassport } from '@tests/mocks/stubs/providers/eis/passport'
 
 import { AppConfig } from '@interfaces/config'
 import { PassportGenderEN, PassportGenderUA, RegistryPassportDTO } from '@interfaces/dto'
-import { DocumentInstance } from '@interfaces/services'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 import { DefaultValue, DocumentMediaAlias } from '@interfaces/services/documents'
 import { PassportDocumentTypeCamelCase } from '@interfaces/services/passport'
 

@@ -7,7 +7,6 @@ import { SetRequired } from 'type-fest'
 import { DocumentDecryptedData, IdentifierService } from '@diia-inhouse/crypto'
 import { UpdateQuery } from '@diia-inhouse/db'
 import { Task } from '@diia-inhouse/diia-queue'
-import { EnvService } from '@diia-inhouse/env'
 import { AccessDeniedError, BadRequestError, InternalServerError } from '@diia-inhouse/errors'
 import {
     ActHeaders,
@@ -45,8 +44,8 @@ import Utils from '@utils/index'
 
 import { ExpirationType } from '@interfaces/models/documentSetting'
 import { DocumentIdsExpiration, DocumentsExpirationModel } from '@interfaces/models/documentsExpiration'
-import { DocumentInstance } from '@interfaces/services'
 import { DocumentDecryptedDataByDocumentType } from '@interfaces/services/cryptData'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 import {
     AddDocumentParams,
     AddDocumentStrategy,
@@ -82,7 +81,6 @@ import {
     IdentityDocument,
     IsDocumentForceUpdate,
     IsDocumentForceUpdateParams,
-    SkipSaveToUserProfileConditions,
     SyncDocumentDataStrategy,
     UnavailableDocument,
     UserDocumentsOrderDTO,
@@ -170,8 +168,6 @@ export default class DocumentsService implements OnRegistrationsFinished {
         [PassportDocumentType.ForeignPassport]: 'Закордонний паспорт',
     }
 
-    private readonly skipSaveToUserProfileConditionsByDocumentType: Record<string, SkipSaveToUserProfileConditions> = {}
-
     private readonly statusesToSaveDocumentData: DocumentStatusCode[] = [HttpStatusCode.OK, HttpStatusCode.NOT_FOUND]
 
     private readonly getSharingRenderDataByDocumentTypeStrategies: Record<string, GetSharingRenderDataByDocumentTypeStrategy>
@@ -193,7 +189,6 @@ export default class DocumentsService implements OnRegistrationsFinished {
         private readonly appUtils: Utils,
 
         private readonly identifier: IdentifierService,
-        private readonly envService: EnvService,
         private readonly logger: Logger,
         private readonly task: Task,
     ) {
@@ -344,8 +339,8 @@ export default class DocumentsService implements OnRegistrationsFinished {
             const data = withCover
                 ? this.documentsDataMapper.toDocumentsWithCover(documentsToProcess, documentType)
                 : designSystem
-                ? designSystemDocuments
-                : documents
+                  ? designSystemDocuments
+                  : documents
 
             Object.assign(expirationsModifier, modifier)
             result[documentTypeResponse] = {
@@ -428,6 +423,7 @@ export default class DocumentsService implements OnRegistrationsFinished {
                     context,
                     ignoreCache,
                     designSystem: false,
+                    skipAppVersionCheck: true,
                 })
 
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -533,6 +529,7 @@ export default class DocumentsService implements OnRegistrationsFinished {
                     context,
                     ignoreCache,
                     designSystem: false,
+                    skipAppVersionCheck: true,
                 })
 
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -683,15 +680,7 @@ export default class DocumentsService implements OnRegistrationsFinished {
         removeMissingDocuments = true,
     ): Promise<void> {
         const userProfileDocuments = documents
-            .map((document): UserProfileDocument | undefined => {
-                const conditions = this.skipSaveToUserProfileConditionsByDocumentType[documentType]
-
-                if (conditions && conditions.env === this.envService.getEnv() && conditions.docStatuses.includes(document.docStatus)) {
-                    return
-                }
-
-                return this.documentsDataMapper.toUserProfileDocument(documentType, document)
-            })
+            .map((document) => this.documentsDataMapper.toUserProfileDocument(documentType, document))
             // eslint-disable-next-line unicorn/prefer-native-coercion-functions
             .filter((item): item is UserProfileDocument => Boolean(item))
 
@@ -1260,7 +1249,6 @@ export default class DocumentsService implements OnRegistrationsFinished {
                 enrichDocumentsStrategiesByDocumentTypeResponse = {},
                 identityDocumentTypes = [],
                 syncDocumentDataStrategies = {},
-                skipSaveToUserProfileConditionsByDocumentType = {},
                 isDocumentForceUpdate,
                 getSharingRenderData,
             } = service
@@ -1302,7 +1290,6 @@ export default class DocumentsService implements OnRegistrationsFinished {
             Object.assign(this.syncDocumentDataStrategies, syncDocumentDataStrategies)
             Object.assign(this.enrichDocumentsStrategiesByDocumentTypeResponse, enrichDocumentsStrategiesByDocumentTypeResponse)
             Object.assign(this.documentTypeToGrpcDocumentType, documentTypeToGrpcDocumentType)
-            Object.assign(this.skipSaveToUserProfileConditionsByDocumentType, skipSaveToUserProfileConditionsByDocumentType)
             this.documentTypes.push(...documentTypes)
             this.documentFilters.push(...documentFilters)
             this.documentsToGetFeaturePoints.push(...documentsToGetFeaturePoints)

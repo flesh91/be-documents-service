@@ -1,7 +1,7 @@
 import { DocumentType } from '@src/documents/taxpayerCard/interfaces/services'
 import { AnalyticsActionType } from '@src/documents/taxpayerCard/interfaces/services/analytics'
 
-import { DocumentAnalyticsService } from '@interfaces/services/documents'
+import { DocumentAnalyticsService } from '@interfaces/services/analytics'
 
 export default class TaxpayerCardAnalyticsService implements DocumentAnalyticsService {
     readonly documentTypeToGetDocumentAnalyticsAction: Partial<Record<DocumentType, AnalyticsActionType>> = {

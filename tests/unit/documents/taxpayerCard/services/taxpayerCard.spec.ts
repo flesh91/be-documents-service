@@ -22,7 +22,7 @@ import { ForeignPassportInstanceDetails } from '@src/generated'
 import UserService from '@services/user'
 
 import { InternalPassportInstance } from '@interfaces/providers/eis'
-import { DocumentInstance } from '@interfaces/services'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 import { GetDocumentsResult } from '@interfaces/services/documents'
 import { AssertStrategyParams, VerifyOtpResponse } from '@interfaces/services/documentVerification'
 import { PassportDocumentType } from '@interfaces/services/passport'

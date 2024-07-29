@@ -1,6 +1,5 @@
 import moment from 'moment'
 
-import { Env } from '@diia-inhouse/env'
 import { AccessDeniedError, BadRequestError, DocumentNotFoundError, InternalServerError } from '@diia-inhouse/errors'
 import { AppUser, DocStatus, GenericData, Localization, Logger, TableBlockOrg, UserTokenData } from '@diia-inhouse/types'
 
@@ -13,7 +12,7 @@ import UserService from '@services/user'
 
 import { DocumentIdsExpiration } from '@interfaces/models/documentsExpiration'
 import { Passport } from '@interfaces/providers/eis'
-import { DocumentInstance } from '@interfaces/services'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 import {
     CommonDocument,
     DocumentService,
@@ -24,7 +23,6 @@ import {
     GetDocumentsParams,
     GetDocumentsResult,
     IsDocumentForceUpdateParams,
-    SkipSaveToUserProfileConditions,
 } from '@interfaces/services/documents'
 import { AssertStrategyParams, DocumentVerifyParams, VerifyOtpResponse } from '@interfaces/services/documentVerification'
 
@@ -51,13 +49,6 @@ export default class TaxpayerCardService
 
     readonly enrichDocumentsStrategiesByDocumentTypeResponse: Record<string, EnrichDocumentsStrategy> = {
         taxpayerCard: this.enrichDocuments.bind(this),
-    }
-
-    readonly skipSaveToUserProfileConditionsByDocumentType: Record<DocumentType, SkipSaveToUserProfileConditions> = {
-        [DocumentType.TaxpayerCard]: {
-            env: Env.Prod,
-            docStatuses: <DocStatus[]>Object.values(DocStatus).filter((status) => status !== DocStatus.Ok),
-        },
     }
 
     constructor(

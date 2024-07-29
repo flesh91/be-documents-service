@@ -1,6 +1,6 @@
 import { Localization } from '@diia-inhouse/types'
 
-import { DocumentInstance } from '@interfaces/services'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 import { CommonDocument } from '@interfaces/services/documents'
 import { ManualDocumentListItemWithOrder } from '@interfaces/services/manualDocumentsList'
 import { UserProfileDocument } from '@interfaces/services/user'
@@ -10,7 +10,7 @@ export interface DocumentDataMapper<TDoc, TDocType> {
     manualDocumentsList?: ManualDocumentListItemWithOrder[]
     toDocumentInstance(document: TDoc, params?: object): DocumentInstance
     toVerifyDocumentInstance(document: TDoc, params?: object): DocumentInstance
-    enrichUserProfileDocument?(profileDocument: UserProfileDocument, document: CommonDocument, documentType?: string): UserProfileDocument
+    enrichUserProfileDocument?(profileDocument: UserProfileDocument, document: CommonDocument, documentType?: TDocType): UserProfileDocument
 }
 
 /** @deprecated use DocumentDataMapper instead */

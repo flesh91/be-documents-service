@@ -12,8 +12,8 @@ import DesignSystemDataMapper from '@dataMappers/designSystemDataMapper'
 
 import { DocumentDataMapper } from '@interfaces/dataMappers'
 import { RnokppErrorCode } from '@interfaces/providers/drfo'
-import { DocumentInstance } from '@interfaces/services'
 import { DocumentTicker, DocumentTickerCode, DocumentTickerPlaceholder } from '@interfaces/services/documentAttributes'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 
 export default class TaxPayerCardDataMapper implements DocumentDataMapper<TaxpayerCard, DocumentType> {
     documentTypes: DocumentType[] = [DocumentType.TaxpayerCard]

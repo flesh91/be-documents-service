@@ -37,7 +37,8 @@ import {
     Representative,
 } from '@interfaces/providers/eis'
 import { RegistrationAddress } from '@interfaces/providers/usdr'
-import { DocumentInstance, AnalyticsActionResult as ServiceAnalyticsActionResult } from '@interfaces/services'
+import { AnalyticsActionResult as ServiceAnalyticsActionResult } from '@interfaces/services/analytics'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 import {
     DocumentWithPhoto,
     GetDocumentsContext,

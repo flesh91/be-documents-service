@@ -1,6 +1,4 @@
-import api from '@opentelemetry/api'
-
-import { GrpcAppAction } from '@diia-inhouse/diia-app'
+import { GrpcAppAction, trace } from '@diia-inhouse/diia-app'
 
 import { InternalServerError } from '@diia-inhouse/errors'
 import { ActionVersion, OnInit, SessionType } from '@diia-inhouse/types'
@@ -46,7 +44,7 @@ export default class GetDocumentsToProcessAction implements GrpcAppAction, OnIni
             headers,
         } = args
 
-        const span = api.trace.getActiveSpan()
+        const span = trace.getActiveSpan()
 
         span?.setAttributes({
             documentTypes: documentTypes,

@@ -1,4 +1,4 @@
-import { DocumentInstance } from '@interfaces/services'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 import { CommonDocument } from '@interfaces/services/documents'
 
 export const getDocumentInstance = (document: CommonDocument): DocumentInstance => {

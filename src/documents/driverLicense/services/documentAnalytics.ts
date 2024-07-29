@@ -1,7 +1,7 @@
 import { DocumentType } from '@src/documents/driverLicense/interfaces/services'
 import { AnalyticsActionType } from '@src/documents/driverLicense/interfaces/services/analytics'
 
-import { DocumentAnalyticsService } from '@interfaces/services/documents'
+import { DocumentAnalyticsService } from '@interfaces/services/analytics'
 
 export default class DriverLicenseAnalyticsService implements DocumentAnalyticsService {
     readonly documentTypeToGenerateOtpAnalyticsAction: Partial<Record<DocumentType, AnalyticsActionType>> = {

@@ -9,8 +9,9 @@ import {
     DocumentAnalytics,
     DocumentAnalyticsCategory,
     DocumentAnalyticsParams,
-} from '@interfaces/services'
-import { CommonDocument, DocumentAnalyticsService, DocumentStatusCode } from '@interfaces/services/documents'
+    DocumentAnalyticsService,
+} from '@interfaces/services/analytics'
+import { CommonDocument, DocumentStatusCode } from '@interfaces/services/documents'
 import { PassportDocumentType } from '@interfaces/services/passport'
 
 export default class Analytics implements OnRegistrationsFinished {
@@ -69,14 +70,18 @@ export default class Analytics implements OnRegistrationsFinished {
         documentId,
         data,
         category = DocumentAnalyticsCategory.GetDocuments,
+        processCode,
     }: DocumentAnalyticsParams): void {
         const { mobileUid, appVersion, platformType, platformVersion } = headers
+
         const analytics: DocumentAnalytics = {
             date: new Date().toISOString(),
+            documentType,
             category,
             action: {
                 type: this.getDocumentActionTypeByDocumentType[documentType] || AnalyticsActionType.GetDocument,
                 result: this.getActionResult(document?.docStatus, statusCode),
+                processCode,
             },
             identifier: userIdentifier,
             appVersion,

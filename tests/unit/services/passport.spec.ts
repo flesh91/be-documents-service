@@ -50,7 +50,10 @@ import { RegistryPassportDTO } from '@interfaces/dto'
 import { PassportByInn, PassportByInnRequester } from '@interfaces/providers/dms'
 import { ForeignPassportInstance, InternalPassportInstance } from '@interfaces/providers/eis'
 import { RegistrationAddress } from '@interfaces/providers/usdr'
-import { AnalyticsActionResult as ServiceAnalyticsActionResult, AnalyticsCategory as ServiceAnalyticsCategory } from '@interfaces/services'
+import {
+    AnalyticsActionResult as ServiceAnalyticsActionResult,
+    AnalyticsCategory as ServiceAnalyticsCategory,
+} from '@interfaces/services/analytics'
 import { GetDocumentsParams, GetDocumentsResult } from '@interfaces/services/documents'
 import { AssertStrategyParams } from '@interfaces/services/documentVerification'
 import { PassportDocumentType } from '@interfaces/services/passport'

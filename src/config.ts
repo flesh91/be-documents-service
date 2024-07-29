@@ -129,6 +129,7 @@ export default async (envService: EnvService, serviceName: string) => {
             isEnabled: envService.getVar('GRPC_CLIENT_ENABLED', 'boolean', false),
             govGateway: envService.getVar('GRPC_GOV_GATEWAY', 'string', 'gov-gateway-grpc:5000'),
             userServiceAddress: envService.getVar('GRPC_USER_SERVICE_ADDRESS', 'string'),
+            supergenServiceAddress: envService.getVar('GRPC_SUPERGEN_SERVICE_ADDRESS', 'string'),
         },
 
         grpcServer: {

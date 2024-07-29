@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import { DocumentDecryptedData } from '@diia-inhouse/crypto'
-import { Env } from '@diia-inhouse/env'
 import {
     ActHeaders,
     AppUser,
@@ -31,9 +30,9 @@ import {
     InternalPassportInstance,
     Passport,
 } from '@interfaces/providers/eis'
-import { AnalyticsActionResult, DocumentInstance } from '@interfaces/services'
 import { DocumentDecryptedDataByDocumentType } from '@interfaces/services/cryptData'
 import { DocumentCover, DocumentTicker, DocumentTickerCode } from '@interfaces/services/documentAttributes'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 import { DocumentsMetaData } from '@interfaces/services/documentsMetaData'
 import {
     AssertStrategyParams,
@@ -171,6 +170,7 @@ export interface GetDocumentsParams<T extends string = string> {
     storageDataByDocumentTypes?: DocumentDecryptedDataByDocumentType
     context: GetDocumentsContext
     ignoreCache?: boolean
+    skipAppVersionCheck?: boolean
 }
 
 export interface GetDocumentsResult<T extends CommonDocument = CommonDocument> {
@@ -285,11 +285,6 @@ export interface DocumentWithETagResponse {
 
 export type DocumentsResponse = Partial<Record<string, DocumentWithETagResponse>>
 
-export interface SkipSaveToUserProfileConditions {
-    env: Env
-    docStatuses: DocStatus[]
-}
-
 export interface AddDocumentFeature {
     addDocumentType: string
     addDocumentTypeToDocumentTypes?: Record<string, string[]>
@@ -348,7 +343,6 @@ export interface BaseDocumentService<T extends string, TCamel extends string> {
 
 export interface DocumentService<T extends string, TCamel extends string> extends BaseDocumentService<T, TCamel> {
     validDocStatusesByDocumentType?: Partial<Record<T, DocStatus[]>>
-    skipSaveToUserProfileConditionsByDocumentType?: Record<T, SkipSaveToUserProfileConditions>
     documentTypeToGrpcDocumentType?: Partial<Record<T, TCamel>>
     /** @deprecated use add document instead */
     getDocumentType?: string
@@ -384,12 +378,6 @@ export type AnyDocumentService<T extends string = string, TCamel extends string 
 export interface DocumentExpirationService {
     documentsToSkipExpiration?: string[]
     documentsWithoutExpirationPerUser?: string[]
-}
-
-export interface DocumentAnalyticsService {
-    documentTypeToGenerateOtpAnalyticsAction?: Partial<Record<string, string>>
-    documentTypeToGetDocumentAnalyticsAction?: Partial<Record<string, string>>
-    actionResultByStatusCode?: Partial<Record<DocumentStatusCode, AnalyticsActionResult>>
 }
 
 export interface DocumentAttributesService {

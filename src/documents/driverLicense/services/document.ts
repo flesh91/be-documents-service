@@ -11,7 +11,8 @@ import { AnalyticsActionType } from '@src/documents/driverLicense/interfaces/ser
 import PassportService from '@services/passport'
 
 import { Passport } from '@interfaces/providers/eis'
-import { DocumentInstance, AnalyticsCategory as ServiceAnalyticsCategory } from '@interfaces/services'
+import { AnalyticsCategory as ServiceAnalyticsCategory } from '@interfaces/services/analytics'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 import { DefaultValue, DocumentService, GetDocumentsContext, GetDocumentsParams, GetDocumentsResult } from '@interfaces/services/documents'
 import { AssertStrategyParams, DocumentVerifyParams, VerifyOtpResponse } from '@interfaces/services/documentVerification'
 

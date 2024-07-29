@@ -76,3 +76,16 @@ message Act {
   string date = 4;
   string parenthood = 5;
 }
+
+message GetBirthCertificatesToProcessReq {
+  message Filter {
+    repeated string identifiers = 1;
+    optional int32 ageLimit = 2; // non inclusive
+  }
+
+  Filter filters = 1;
+}
+
+message GetBirthCertificatesToProcessRes {
+  repeated BirthCertificate items = 1;
+}

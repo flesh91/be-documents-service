@@ -1,6 +1,6 @@
 import { UserActionArguments } from '@diia-inhouse/types'
 
-import { DocumentInstance } from '@interfaces/services'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 import { DocumentsWithOrder } from '@interfaces/services/documents'
 
 export interface CustomActionArguments extends UserActionArguments {

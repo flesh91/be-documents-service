@@ -4,7 +4,7 @@ import VerifyServiceEntranceDocumentByDataAction from '@actions/v1/verifyService
 
 import DocumentVerificationService from '@services/documentVerification'
 
-import { DocumentInstance } from '@interfaces/services'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 
 describe(`Action ${VerifyServiceEntranceDocumentByDataAction.name}`, () => {
     const testKit = new TestKit()

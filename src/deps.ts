@@ -5,6 +5,7 @@ import { AuthService, CryptoDeps, CryptoService, HashService, IdentifierService 
 import { HttpDeps, HttpService } from '@diia-inhouse/http'
 import { I18nService } from '@diia-inhouse/i18n'
 import { CacheService, PubSubService, RedisDeps, RedlockService, StoreService } from '@diia-inhouse/redis'
+import { SupergenDefinition } from '@diia-inhouse/super-gen-client'
 import { HttpProtocol } from '@diia-inhouse/types'
 import { UserServiceDefinition } from '@diia-inhouse/user-service-client'
 
@@ -23,7 +24,7 @@ export default async (config: AppConfig): ReturnType<DepsFactoryFn<AppConfig, Ap
         store,
         auth,
         identifier,
-        grpc: { userServiceAddress },
+        grpc: { userServiceAddress, supergenServiceAddress },
     } = config
 
     const providersDeps = {
@@ -56,6 +57,9 @@ export default async (config: AppConfig): ReturnType<DepsFactoryFn<AppConfig, Ap
     const grpcClientsDeps: NameAndRegistrationPair<GrpcClientsDeps> = {
         userServiceClient: asFunction((grpcClientFactory: GrpcClientFactory) =>
             grpcClientFactory.createGrpcClient(UserServiceDefinition, userServiceAddress),
+        ).singleton(),
+        supergenClient: asFunction((grpcClientFactory: GrpcClientFactory) =>
+            grpcClientFactory.createGrpcClient(SupergenDefinition, supergenServiceAddress),
         ).singleton(),
     }
 

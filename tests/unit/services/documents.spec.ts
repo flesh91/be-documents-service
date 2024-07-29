@@ -3,7 +3,6 @@ import { randomUUID } from 'node:crypto'
 import { IdentifierService } from '@diia-inhouse/crypto'
 import Logger from '@diia-inhouse/diia-logger'
 import { Task } from '@diia-inhouse/diia-queue'
-import { EnvService } from '@diia-inhouse/env'
 import { AccessDeniedError, BadRequestError, InternalServerError } from '@diia-inhouse/errors'
 import TestKit, { mockInstance } from '@diia-inhouse/test'
 import { AppUser, HttpStatusCode, OwnerType, ProfileFeature, SessionType, UserSession } from '@diia-inhouse/types'
@@ -50,7 +49,6 @@ describe(`Service DocumentsService`, () => {
     const appUtils = mockInstance(Utils)
 
     const identifier = mockInstance(IdentifierService)
-    const envService = mockInstance(EnvService)
     const logger = mockInstance(Logger)
     const task = mockInstance(Task)
 
@@ -68,7 +66,6 @@ describe(`Service DocumentsService`, () => {
         documentsDataMapper,
         appUtils,
         identifier,
-        envService,
         logger,
         task,
     )
@@ -301,9 +298,6 @@ describe(`Service DocumentsService`, () => {
         it('should return passport', async () => {
             const filter = [PassportDocumentType.InternalPassport]
             const outputParams = { designSystem: false }
-
-            jest.spyOn(envService, 'isStage').mockReturnValueOnce(true)
-
             const model = <DocumentsExpirationModel>{
                 mobileUid: headers.mobileUid,
                 userIdentifier: session.user.identifier,
@@ -406,7 +400,6 @@ describe(`Service DocumentsService`, () => {
                 documentsDataMapper,
                 appUtils,
                 identifier,
-                envService,
                 logger,
                 task,
             )
@@ -443,7 +436,6 @@ describe(`Service DocumentsService`, () => {
                     documentsDataMapper,
                     appUtils,
                     identifier,
-                    envService,
                     logger,
                     task,
                 )

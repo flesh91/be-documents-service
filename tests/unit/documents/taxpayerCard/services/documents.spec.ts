@@ -1,9 +1,8 @@
 import { IdentifierService } from '@diia-inhouse/crypto'
 import Logger from '@diia-inhouse/diia-logger'
 import { Task } from '@diia-inhouse/diia-queue'
-import { EnvService } from '@diia-inhouse/env'
 import TestKit, { mockInstance } from '@diia-inhouse/test'
-import { DocStatus, HttpStatusCode } from '@diia-inhouse/types'
+import { HttpStatusCode } from '@diia-inhouse/types'
 
 import { DocumentType, TaxpayerCard } from '@src/documents/taxpayerCard/interfaces/services'
 import TaxpayerCardService from '@src/documents/taxpayerCard/services/document'
@@ -44,7 +43,6 @@ describe(`Service DocumentsService`, () => {
     const appUtils = mockInstance(Utils)
 
     const identifier = mockInstance(IdentifierService)
-    const envService = mockInstance(EnvService)
     const logger = mockInstance(Logger)
     const task = mockInstance(Task)
 
@@ -62,11 +60,9 @@ describe(`Service DocumentsService`, () => {
         documentsDataMapper,
         appUtils,
         identifier,
-        envService,
         logger,
         task,
     )
-    const headers = testKit.session.getHeaders()
     const session = testKit.session.getUserSession()
 
     service.onRegistrationsFinished()
@@ -97,18 +93,6 @@ describe(`Service DocumentsService`, () => {
             jest.spyOn(taxpayerCardService, 'getTaxpayerCard').mockResolvedValueOnce(card)
 
             expect(await service.getDocumentsToProcessV1(mockDocumentsFilter, session.user)).toMatchObject(result)
-        })
-    })
-
-    describe(`method: saveDocumentsInUserProfile`, () => {
-        it('should return undefined if taxpayer card given', async () => {
-            jest.spyOn(envService, 'isProd').mockReturnValueOnce(true)
-
-            const doc = <TaxpayerCard>testKit.docs.generateDocument(DocumentType.TaxpayerCard, { docStatus: DocStatus.Deleting })
-
-            const result = await service.saveDocumentsInUserProfile(session.user.identifier, DocumentType.TaxpayerCard, [doc], headers)
-
-            expect(result).toBeUndefined()
         })
     })
 })

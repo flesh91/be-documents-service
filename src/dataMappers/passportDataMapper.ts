@@ -45,8 +45,8 @@ import {
     PassportFull,
 } from '@interfaces/providers/eis'
 import { RegistrationAddress } from '@interfaces/providers/usdr'
-import { DocumentInstance } from '@interfaces/services'
 import { DocumentTickerCode } from '@interfaces/services/documentAttributes'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 import { DefaultValue, DocumentMediaAlias } from '@interfaces/services/documents'
 import { PassportDocumentType, PassportDocumentTypeCamelCase } from '@interfaces/services/passport'
 

@@ -12,8 +12,8 @@ import DocumentAttributesService from '@services/documentAttributes'
 import DesignSystemDataMapper from '@dataMappers/designSystemDataMapper'
 
 import { RnokppErrorCode } from '@interfaces/providers/drfo'
-import { DocumentInstance } from '@interfaces/services'
 import { DocumentTickerCode, DocumentTickerPlaceholder } from '@interfaces/services/documentAttributes'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 
 describe('documents', () => {
     const testKit = new TestKit()

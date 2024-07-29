@@ -9,7 +9,7 @@ import AnalyticsService from '@src/services/analytics'
 import { getDocumentAnalyticsService } from '@mocks/stubs/documentDepsCollection'
 
 import { AppConfig } from '@interfaces/config'
-import { AnalyticsActionResult, DocumentAnalyticsCategory } from '@interfaces/services'
+import { AnalyticsActionResult, DocumentAnalyticsCategory } from '@interfaces/services/analytics'
 import { Document } from '@interfaces/services/documents'
 
 describe('AnalyticsService', () => {

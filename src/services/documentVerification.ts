@@ -22,7 +22,8 @@ import DocumentVerificationDataMapper from '@dataMappers/documentVerificationDat
 
 import { AppConfig } from '@interfaces/config'
 import { DocumentVerificationOtp, DocumentVerificationOtpModel } from '@interfaces/models/documentVerificationOtp'
-import { DocumentInstance, AnalyticsCategory as ServiceAnalyticsCategory } from '@interfaces/services'
+import { AnalyticsCategory as ServiceAnalyticsCategory } from '@interfaces/services/analytics'
+import { DocumentInstance } from '@interfaces/services/documentInstance'
 import { AnyDocumentService, CommonDocument, Document } from '@interfaces/services/documents'
 import {
     AssertStrategy,
