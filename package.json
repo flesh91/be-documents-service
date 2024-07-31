@@ -1,6 +1,6 @@
 {
     "name": "documents-service",
-    "version": "1.67.0",
+    "version": "1.68.0",
     "main": "dist/index.js",
     "repository": "https://github.com/diia-open-source/be-documents-service.git",
     "author": "Diia",
