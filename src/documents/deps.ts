@@ -29,7 +29,7 @@ function nameFormatter(descriptor: LoadedModuleDescriptor, folderName: string, d
 }
 
 function getLoadDocumentDep(folderName: string, fileMask: string, groupName?: string): LoadDepsFromFolderOptions {
-    const [docType, depDir] = folderName.split(path.sep).slice(-2)
+    const [docType, depDir] = folderName.split(path.posix.sep).slice(-2)
     const depType = singular(depDir)
 
     return {
