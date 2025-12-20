@@ -59,7 +59,7 @@
         "compare-versions": "6.1.1",
         "country-iso-3-to-2": "1.1.1",
         "ean13-lib": "0.0.5",
-        "glob": "11.0.0",
+        "glob": "11.1.0",
         "is-base64": "1.1.0",
         "lodash": "4.17.21",
         "luhn-string": "1.2.3",
