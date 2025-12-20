@@ -63,7 +63,7 @@
         "is-base64": "1.1.0",
         "lodash": "4.17.21",
         "luhn-string": "1.2.3",
-        "luxon": "3.4.4",
+        "luxon": "3.7.2",
         "migrate-mongo": "11.0.0",
         "module-alias": "2.2.3",
         "moment": "2.30.1",
