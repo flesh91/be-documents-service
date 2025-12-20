@@ -49,7 +49,7 @@
         "@diia-inhouse/healthcheck": "1.12.0",
         "@diia-inhouse/http": "1.9.0",
         "@diia-inhouse/i18n": "2.3.0",
-        "@diia-inhouse/redis": "2.13.0",
+        "@diia-inhouse/redis": "2.19.0",
         "@diia-inhouse/super-gen-client": "1.0.0-160166",
         "@diia-inhouse/types": "6.41.0",
         "@diia-inhouse/user-service-client": "1.0.0-146079",
