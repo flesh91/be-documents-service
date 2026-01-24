@@ -61,7 +61,7 @@
         "ean13-lib": "0.0.5",
         "glob": "11.0.0",
         "is-base64": "1.1.0",
-        "lodash": "4.17.21",
+        "lodash": "4.17.23",
         "luhn-string": "1.2.3",
         "luxon": "3.4.4",
         "migrate-mongo": "11.0.0",
