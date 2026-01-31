@@ -51,7 +51,7 @@
         "@diia-inhouse/i18n": "2.3.0",
         "@diia-inhouse/redis": "2.13.0",
         "@diia-inhouse/super-gen-client": "1.0.0-160166",
-        "@diia-inhouse/types": "6.41.0",
+        "@diia-inhouse/types": "10.0.10",
         "@diia-inhouse/user-service-client": "1.0.0-146079",
         "@diia-inhouse/utils": "3.6.0",
         "@diia-inhouse/validators": "1.17.0",
